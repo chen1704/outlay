@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package outlay2.code;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import javax.swing.*;
+import outlay2.db.connector;
 /**
  *
  * @author core i5
@@ -34,7 +32,7 @@ public class FormDeskripsi extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        deskripsi = new javax.swing.JTextArea();
         checklistbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,9 +41,9 @@ public class FormDeskripsi extends javax.swing.JFrame {
 
         jLabel2.setText("deskrispi");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        deskripsi.setColumns(20);
+        deskripsi.setRows(5);
+        jScrollPane1.setViewportView(deskripsi);
 
         checklistbutton.setText("✔");
         checklistbutton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,36 +82,22 @@ public class FormDeskripsi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
-    public static Connection getConnection() throws Exception{
-        Connection cn = null;
-        Statement st = null;
-        ResultSet rs = null;
-        String query = "";
-        try{
-            cn = DriverManager.getConnection("jdbc:derby://localhost:1527/outlaydb", "test", "test");
-            st = cn.createStatement();
-            rs = st.executeQuery(query);
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        
-        return cn;
-    }
+
     
     private void checklistbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checklistbuttonMouseClicked
-        // TODO add your handling code here:
         try{
-            Connection cn = getConnection();
-            String sql = "";
+            Connection cn = connector.getConnection();
+            Statement st = null;
+            ResultSet rs = null;
+            String query = "insert into deskripsi(id_deskripsi, detail_deskripsi) values('' ,'"+deskripsi.getText()+"')";
+            
+            st = cn.createStatement();
+            rs = st.executeQuery(query);
             
         }
         catch(Exception e){
-            //jOptionPane.showMessageDialogue(this,e);
+            JOptionPane.showMessageDialog(this, e);
         }
-        
-        
     }//GEN-LAST:event_checklistbuttonMouseClicked
 
     /**
@@ -153,9 +137,9 @@ public class FormDeskripsi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checklistbutton;
+    private javax.swing.JTextArea deskripsi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
