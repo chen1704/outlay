@@ -5,6 +5,10 @@
  */
 package outlay3.code;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author core i5
@@ -27,17 +31,25 @@ public class FormKategori extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Checklist = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        nama_ktgr = new javax.swing.JTextField();
         color_hitam = new javax.swing.JRadioButton();
         color_white = new javax.swing.JRadioButton();
         color_red = new javax.swing.JRadioButton();
         color_yellow = new javax.swing.JRadioButton();
         color_blue = new javax.swing.JRadioButton();
+        kendaraan = new javax.swing.JRadioButton();
+        keranjang = new javax.swing.JRadioButton();
+        telepon = new javax.swing.JRadioButton();
+        pin = new javax.swing.JRadioButton();
+        baju = new javax.swing.JRadioButton();
+        trashbin = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         TitikTiga = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -53,7 +65,13 @@ public class FormKategori extends javax.swing.JFrame {
         jLabel4.setText("icon");
 
         Checklist.setText("✔");
+        Checklist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChecklistActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(color_hitam);
         color_hitam.setText("Hitam");
         color_hitam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,13 +79,55 @@ public class FormKategori extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(color_white);
         color_white.setText("Putih");
+        color_white.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                color_whiteActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(color_red);
         color_red.setText("Merah");
+        color_red.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                color_redActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(color_yellow);
         color_yellow.setText("Kuning");
+        color_yellow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                color_yellowActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(color_blue);
         color_blue.setText("Biru");
+        color_blue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                color_blueActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(kendaraan);
+        kendaraan.setText("Kendaraan");
+
+        buttonGroup2.add(keranjang);
+        keranjang.setText("Keranjang");
+
+        buttonGroup2.add(telepon);
+        telepon.setText("Telepon");
+
+        buttonGroup2.add(pin);
+        pin.setText("Pin");
+
+        buttonGroup2.add(baju);
+        baju.setText("Baju");
+
+        buttonGroup2.add(trashbin);
+        trashbin.setText("Trashbin");
 
         TitikTiga.setText("...");
         TitikTiga.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,7 +163,6 @@ public class FormKategori extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(color_red)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,8 +171,21 @@ public class FormKategori extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(color_blue)
-                            .addComponent(color_yellow))))
-                .addContainerGap(122, Short.MAX_VALUE))
+                            .addComponent(color_yellow)))
+                    .addComponent(nama_ktgr, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(kendaraan)
+                            .addComponent(keranjang))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(telepon)
+                            .addComponent(pin))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(trashbin)
+                            .addComponent(baju))))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +194,7 @@ public class FormKategori extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nama_ktgr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -134,9 +206,18 @@ public class FormKategori extends javax.swing.JFrame {
                     .addComponent(color_blue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(color_red)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(kendaraan)
+                    .addComponent(telepon)
+                    .addComponent(baju))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(keranjang)
+                    .addComponent(pin)
+                    .addComponent(trashbin))
+                .addGap(21, 21, 21)
                 .addComponent(Checklist)
                 .addGap(26, 26, 26))
         );
@@ -150,7 +231,63 @@ public class FormKategori extends javax.swing.JFrame {
 
     private void color_hitamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_hitamActionPerformed
         // TODO add your handling code here:
+        Kategori ktgr = new Kategori();
+        ktgr.setWarnaKategori("hitam");
     }//GEN-LAST:event_color_hitamActionPerformed
+
+    private void color_whiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_whiteActionPerformed
+        // TODO add your handling code here:
+        Kategori ktgr = new Kategori();
+        ktgr.setWarnaKategori("putih");
+    }//GEN-LAST:event_color_whiteActionPerformed
+
+    private void color_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_redActionPerformed
+        // TODO add your handling code here:
+        Kategori ktgr = new Kategori();
+        ktgr.setWarnaKategori("merah");
+    }//GEN-LAST:event_color_redActionPerformed
+
+    private void color_yellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_yellowActionPerformed
+        
+    }//GEN-LAST:event_color_yellowActionPerformed
+
+    private void color_blueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_blueActionPerformed
+        
+    }//GEN-LAST:event_color_blueActionPerformed
+
+    private void ChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChecklistActionPerformed
+        // TODO add your handling code here:
+        color_hitam.setActionCommand("hitam");
+        color_white.setActionCommand("putih");
+        color_red.setActionCommand("merah");
+        color_yellow.setActionCommand("yellow");
+        color_blue.setActionCommand("blue");
+        
+        kendaraan.setActionCommand("kendaraan");
+        keranjang.setActionCommand("keranjang");
+        telepon.setActionCommand("telepon");
+        pin.setActionCommand("pin");
+        baju.setActionCommand("baju");
+        trashbin.setActionCommand("trashbin");
+        
+        Kategori ktgr = new Kategori();
+        try{
+            Connection cn = outlay2.db.connector.getConnection();
+            String query = "insert into kategori(nama_kategori, warna_kategori, icon_kategori) values(?,?,?)";
+            PreparedStatement ps = cn.prepareStatement(query);
+            ps.setString(1, nama_ktgr.getText());
+            ps.setString(2, buttonGroup1.getSelection().getActionCommand());
+            ps.setString(3, buttonGroup2.getSelection().getActionCommand());
+            ps.executeUpdate();
+            
+            HalamanUtama hlm = new HalamanUtama();
+            hlm.setVisible(true);
+            this.setVisible(false);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_ChecklistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +327,9 @@ public class FormKategori extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Checklist;
     private javax.swing.JMenu TitikTiga;
+    private javax.swing.JRadioButton baju;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButton color_blue;
     private javax.swing.JRadioButton color_hitam;
     private javax.swing.JRadioButton color_red;
@@ -201,6 +341,11 @@ public class FormKategori extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton kendaraan;
+    private javax.swing.JRadioButton keranjang;
+    private javax.swing.JTextField nama_ktgr;
+    private javax.swing.JRadioButton pin;
+    private javax.swing.JRadioButton telepon;
+    private javax.swing.JRadioButton trashbin;
     // End of variables declaration//GEN-END:variables
 }

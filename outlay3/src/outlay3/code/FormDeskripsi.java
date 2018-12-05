@@ -101,7 +101,10 @@ public class FormDeskripsi extends javax.swing.JFrame {
             PreparedStatement ps = cn.prepareStatement(query);
             ps.setString(1, deskripsi.getText());
             ps.executeUpdate();
-
+            
+            FormPengeluaran form = new FormPengeluaran();
+            form.setVisible(true);
+            this.setVisible(false);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(this, e);
