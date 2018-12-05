@@ -260,8 +260,8 @@ public class FormKategori extends javax.swing.JFrame {
         color_hitam.setActionCommand("hitam");
         color_white.setActionCommand("putih");
         color_red.setActionCommand("merah");
-        color_yellow.setActionCommand("yellow");
-        color_blue.setActionCommand("blue");
+        color_yellow.setActionCommand("kuning");
+        color_blue.setActionCommand("biru");
         
         kendaraan.setActionCommand("kendaraan");
         keranjang.setActionCommand("keranjang");
@@ -269,8 +269,7 @@ public class FormKategori extends javax.swing.JFrame {
         pin.setActionCommand("pin");
         baju.setActionCommand("baju");
         trashbin.setActionCommand("trashbin");
-        
-        Kategori ktgr = new Kategori();
+       
         try{
             Connection cn = outlay2.db.connector.getConnection();
             String query = "insert into kategori(nama_kategori, warna_kategori, icon_kategori) values(?,?,?)";
@@ -280,7 +279,7 @@ public class FormKategori extends javax.swing.JFrame {
             ps.setString(3, buttonGroup2.getSelection().getActionCommand());
             ps.executeUpdate();
             
-            HalamanUtama hlm = new HalamanUtama();
+            HalamanKategori hlm = new HalamanKategori();
             hlm.setVisible(true);
             this.setVisible(false);
         }

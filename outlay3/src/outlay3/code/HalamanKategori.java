@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package outlay3.code;
-
+import java.sql.*;
+import javax.swing.*;
+import java.awt.*;
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author core i5
@@ -16,8 +19,29 @@ public class HalamanKategori extends javax.swing.JFrame {
      */
     public HalamanKategori() {
         initComponents();
+        show_table();
     }
 
+    private void show_table(){
+        try{
+            Connection cn = outlay2.db.connector.getConnection();
+            String query = "select kategori.nama_kategori, icon.gambar from kategori, icon where kategori.warna_kategori = icon.warna AND kategori.icon_kategori = icon.icon";
+            PreparedStatement ps = cn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                byte[] img = rs.getBytes("gambar");
+                tabel_kategori.setModel(DbUtils.resultSetToTableModel(rs));
+                //ImageIcon image = new ImageIcon(img);
+            }
+
+            //
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +53,8 @@ public class HalamanKategori extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         Plus = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel_kategori = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,25 +67,57 @@ public class HalamanKategori extends javax.swing.JFrame {
             }
         });
 
+        tabel_kategori.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nama", "Gambar"
+            }
+        ));
+        jScrollPane1.setViewportView(tabel_kategori);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 319, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Plus))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Plus)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(Plus))
                 .addGap(18, 18, 18)
-                .addComponent(Plus)
-                .addGap(0, 245, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,5 +168,7 @@ public class HalamanKategori extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Plus;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabel_kategori;
     // End of variables declaration//GEN-END:variables
 }
