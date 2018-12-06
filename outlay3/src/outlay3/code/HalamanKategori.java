@@ -7,6 +7,7 @@ package outlay3.code;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 /**
  *
@@ -94,6 +95,11 @@ public class HalamanKategori extends javax.swing.JFrame {
                 "Nama", "Gambar"
             }
         ));
+        tabel_kategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_kategoriMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel_kategori);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,6 +135,16 @@ public class HalamanKategori extends javax.swing.JFrame {
         frmkategori.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_PlusMouseClicked
+
+    FormKategori frm = new FormKategori();
+    private void tabel_kategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_kategoriMouseClicked
+        // TODO add your handling code here:
+        int idx = tabel_kategori.getSelectedRow();
+        TableModel model = tabel_kategori.getModel();
+        String nama = model.getValueAt(idx, 0).toString();
+        
+        //tabel_kategoriRowData.setVisible(true);
+    }//GEN-LAST:event_tabel_kategoriMouseClicked
 
     /**
      * @param args the command line arguments
@@ -169,6 +185,6 @@ public class HalamanKategori extends javax.swing.JFrame {
     private javax.swing.JButton Plus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabel_kategori;
+    public javax.swing.JTable tabel_kategori;
     // End of variables declaration//GEN-END:variables
 }
