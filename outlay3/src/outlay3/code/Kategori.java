@@ -15,6 +15,10 @@ public class Kategori {
    private String warnaKategori;
    private String iconKategori;
 
+   public void setId(Integer id){
+       idKategori = id;
+   }
+   
    public void SetKategori(String nama, String warna, String icon){
        namaKategori = nama;
        warnaKategori = warna;

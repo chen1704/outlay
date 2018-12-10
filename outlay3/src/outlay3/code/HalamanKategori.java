@@ -34,7 +34,7 @@ public class HalamanKategori extends javax.swing.JFrame {
             st = con.createStatement();
             //String query = "insert into kategori(nama_kategori, warna_kategori, icon_kategori) values('"+kategori.getNamaKategori()+"','"+kategori.getWarnaKategori()+"','"+kategori.getIconKategori()+"')";
             //Connection cn = outlay2.db.connector.getConnection();
-            String query = "select kategori.id_kategori, kategori.nama_kategori, icon.gambar from kategori, icon where kategori.warna_kategori = icon.warna AND kategori.icon_kategori = icon.icon";
+            String query = "select kategori.id_kategori, kategori.nama_kategori, icon.gambar from kategori, icon where kategori.warna_kategori = icon.warna AND kategori.icon_kategori = icon.icon order by id_kategori asc";
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             
@@ -143,14 +143,18 @@ public class HalamanKategori extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_PlusMouseClicked
 
-    FormKategori frm = new FormKategori();
     private void tabel_kategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_kategoriMouseClicked
         // TODO add your handling code here:
         int idx = tabel_kategori.getSelectedRow();
         TableModel model = tabel_kategori.getModel();
-        String nama = model.getValueAt(idx, 0).toString();
+        String id = model.getValueAt(idx, 0).toString();
         
+        Kategori kategori = control.setKategori(id);
+        //System.out.println(kategori.getIdKategori());
+        
+        control.openFormEditKategori(kategori);
         //tabel_kategoriRowData.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tabel_kategoriMouseClicked
 
     /**

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2018 at 05:54 PM
+-- Generation Time: Dec 10, 2018 at 12:21 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -91,9 +91,18 @@ INSERT INTO `icon` (`icon`, `warna`, `gambar`) VALUES
 CREATE TABLE `kategori` (
   `id_kategori` int(3) NOT NULL,
   `nama_kategori` varchar(100) NOT NULL,
-  `warna_kategroi` int(11) NOT NULL,
-  `icon_kategori` int(11) NOT NULL
+  `warna_kategori` varchar(100) NOT NULL,
+  `icon_kategori` varchar(101) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `warna_kategori`, `icon_kategori`) VALUES
+(1, 'Kategori1', 'hitam', 'kendaraan'),
+(2, 'Kategori-dua', 'hitam', 'kendaraan'),
+(3, 'Kategori3', 'kuning', 'baju');
 
 -- --------------------------------------------------------
 
@@ -140,7 +149,7 @@ ALTER TABLE `pengeluaran`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kategori` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
