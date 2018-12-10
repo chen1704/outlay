@@ -15,36 +15,26 @@ public class Kategori {
    private String warnaKategori;
    private String iconKategori;
 
+   public void SetKategori(String nama, String warna, String icon){
+       namaKategori = nama;
+       warnaKategori = warna;
+       iconKategori = icon;
+   }
+   
     public Integer getIdKategori() {
         return idKategori;
-    }
-
-    public void setIdKategori(Integer idKategori) {
-        this.idKategori = idKategori;
     }
 
     public String getNamaKategori() {
         return namaKategori;
     }
 
-    public void setNamaKategori(String namaKategori) {
-        this.namaKategori = namaKategori;
-    }
-
     public String getWarnaKategori() {
         return warnaKategori;
     }
 
-    public void setWarnaKategori(String warnaKategori) {
-        this.warnaKategori = warnaKategori;
-    }
-
     public String getIconKategori() {
         return iconKategori;
-    }
-
-    public void setIconKategori(String iconKategori) {
-        this.iconKategori = iconKategori;
     }
    
    

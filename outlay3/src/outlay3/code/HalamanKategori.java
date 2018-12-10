@@ -14,7 +14,10 @@ import net.proteanit.sql.DbUtils;
  * @author core i5
  */
 public class HalamanKategori extends javax.swing.JFrame {
-
+    KategoriController control = new KategoriController();
+    private static final String USERNAME="root";
+    private static final String PASSWORD="";
+    private static final String CONN_STRING="jdbc:mysql://localhost:3306/outlay";
     /**
      * Creates new form HalamanKategori
      */
@@ -24,10 +27,15 @@ public class HalamanKategori extends javax.swing.JFrame {
     }
 
     private void show_table(){
+        Connection con;
+        Statement st;
         try{
-            Connection cn = outlay2.db.connector.getConnection();
-            String query = "select kategori.nama_kategori, icon.gambar from kategori, icon where kategori.warna_kategori = icon.warna AND kategori.icon_kategori = icon.icon";
-            PreparedStatement ps = cn.prepareStatement(query);
+            con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
+            st = con.createStatement();
+            //String query = "insert into kategori(nama_kategori, warna_kategori, icon_kategori) values('"+kategori.getNamaKategori()+"','"+kategori.getWarnaKategori()+"','"+kategori.getIconKategori()+"')";
+            //Connection cn = outlay2.db.connector.getConnection();
+            String query = "select kategori.id_kategori, kategori.nama_kategori, icon.gambar from kategori, icon where kategori.warna_kategori = icon.warna AND kategori.icon_kategori = icon.icon";
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
@@ -70,29 +78,29 @@ public class HalamanKategori extends javax.swing.JFrame {
 
         tabel_kategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nama", "Gambar"
+                "ID", "Nama", "Gambar"
             }
         ));
         tabel_kategori.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,8 +139,7 @@ public class HalamanKategori extends javax.swing.JFrame {
 
     private void PlusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlusMouseClicked
         // TODO add your handling code here:
-        FormKategori frmkategori = new FormKategori();
-        frmkategori.setVisible(true);
+        control.openFormKategori();
         this.setVisible(false);
     }//GEN-LAST:event_PlusMouseClicked
 

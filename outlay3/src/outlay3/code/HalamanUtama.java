@@ -10,7 +10,8 @@ package outlay3.code;
  * @author core i5
  */
 public class HalamanUtama extends javax.swing.JFrame {
-
+    
+    HalamanUtamaControl control = new HalamanUtamaControl();
     /**
      * Creates new form HalamanUtama
      */
@@ -88,25 +89,22 @@ public class HalamanUtama extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KategoriMouseClicked
-        HalamanKategori hlmkategori = new HalamanKategori();
-        hlmkategori.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_KategoriMouseClicked
-
     private void DiagramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiagramMouseClicked
         // TODO add your handling code here:
-        HalamanPengeluaran hlmpengeluaran = new HalamanPengeluaran();
-        hlmpengeluaran.setVisible(true);
+        control.openHalamanPengeluaran();
         this.setVisible(false);
     }//GEN-LAST:event_DiagramMouseClicked
 
     private void AngkaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AngkaMouseClicked
         // TODO add your handling code here:
-        FormPengeluaran frmpengeluaran = new FormPengeluaran();
-        frmpengeluaran.setVisible(true);
+        control.openFormPengeluaran();
         this.setVisible(false);
     }//GEN-LAST:event_AngkaMouseClicked
+
+    private void KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KategoriMouseClicked
+        control.openHalamanKategori();
+        this.setVisible(false);
+    }//GEN-LAST:event_KategoriMouseClicked
 
     /**
      * @param args the command line arguments

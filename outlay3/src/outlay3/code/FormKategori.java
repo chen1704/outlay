@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  * @author core i5
  */
 public class FormKategori extends javax.swing.JFrame {
+    KategoriController control = new KategoriController();
 
     /**
      * Creates new form FormKategori
@@ -231,20 +232,19 @@ public class FormKategori extends javax.swing.JFrame {
 
     private void color_hitamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_hitamActionPerformed
         // TODO add your handling code here:
-        Kategori ktgr = new Kategori();
-        ktgr.setWarnaKategori("hitam");
+        
     }//GEN-LAST:event_color_hitamActionPerformed
 
     private void color_whiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_whiteActionPerformed
         // TODO add your handling code here:
-        Kategori ktgr = new Kategori();
-        ktgr.setWarnaKategori("putih");
+       // Kategori ktgr = new Kategori();
+        //ktgr.setWarnaKategori("putih");
     }//GEN-LAST:event_color_whiteActionPerformed
 
     private void color_redActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_redActionPerformed
         // TODO add your handling code here:
         Kategori ktgr = new Kategori();
-        ktgr.setWarnaKategori("merah");
+        //ktgr.setWarnaKategori("merah");
     }//GEN-LAST:event_color_redActionPerformed
 
     private void color_yellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_yellowActionPerformed
@@ -269,8 +269,18 @@ public class FormKategori extends javax.swing.JFrame {
         pin.setActionCommand("pin");
         baju.setActionCommand("baju");
         trashbin.setActionCommand("trashbin");
+        
+        Kategori kategori = new Kategori();
+        String nama = nama_ktgr.getText();
+        String warna = buttonGroup1.getSelection().getActionCommand();
+        String icon = buttonGroup2.getSelection().getActionCommand();
+        
+        kategori.SetKategori(nama, warna, icon);
+        control.addKategori(kategori);
+        control.openHalamanKategori();
+        this.setVisible(false);
        
-        try{
+        /*try{
             Connection cn = outlay2.db.connector.getConnection();
             String query = "insert into kategori(nama_kategori, warna_kategori, icon_kategori) values(?,?,?)";
             PreparedStatement ps = cn.prepareStatement(query);
@@ -279,13 +289,8 @@ public class FormKategori extends javax.swing.JFrame {
             ps.setString(3, buttonGroup2.getSelection().getActionCommand());
             ps.executeUpdate();
             
-            HalamanKategori hlm = new HalamanKategori();
-            hlm.setVisible(true);
-            this.setVisible(false);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(this, e);
-        }
+            
+        }*/
     }//GEN-LAST:event_ChecklistActionPerformed
 
     /**
