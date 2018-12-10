@@ -12,7 +12,25 @@ package outlay3.code;
 public class Pengeluaran {
     private Integer idPengeluaran;
     private Integer nominalPengeluaran;
+    private Integer idKategori;
+    private Integer idDeskripsi;
 
+    public Integer getIdKategori() {
+        return idKategori;
+    }
+
+    public void setIdKategori(Integer idKategori) {
+        this.idKategori = idKategori;
+    }
+
+    public Integer getIdDeskripsi() {
+        return idDeskripsi;
+    }
+
+    public void setIdDeskripsi(Integer idDeskripsi) {
+        this.idDeskripsi = idDeskripsi;
+    }
+    
     public Integer getIdPengeluaran() {
         return idPengeluaran;
     }

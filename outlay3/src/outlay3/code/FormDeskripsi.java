@@ -6,19 +6,24 @@
 package outlay3.code;
 import java.sql.*;
 import javax.swing.*;
-import outlay2.db.connector;
 /**
  *
  * @author core i5
  */
-public class FormDeskripsi extends javax.swing.JFrame {
-
+public class FormDeskripsi extends javax.swing.JFrame { 
+    PengeluaranControl control = new PengeluaranControl();
+    public void setIdDeskripsi(String id){
+        id_deskripsi.setText(id);
+    }
     /**
      * Creates new form FormDeskripsi
      */
     public FormDeskripsi() {
         initComponents();
+        id_deskripsi.setEditable(false);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +39,8 @@ public class FormDeskripsi extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         deskripsi = new javax.swing.JTextArea();
         checklistbutton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        id_deskripsi = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +64,8 @@ public class FormDeskripsi extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("id");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,22 +76,29 @@ public class FormDeskripsi extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(id_deskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(63, 63, 63)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(id_deskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(checklistbutton)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,20 +111,15 @@ public class FormDeskripsi extends javax.swing.JFrame {
 
     private void checklistbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checklistbuttonActionPerformed
         // TODO add your handling code here:
-        try{
-            Connection cn = outlay2.db.connector.getConnection();
-            String query = "insert into deskripsi(detail_deskripsi) values(?)";
-            PreparedStatement ps = cn.prepareStatement(query);
-            ps.setString(1, deskripsi.getText());
-            ps.executeUpdate();
-            
-            FormPengeluaran form = new FormPengeluaran();
-            form.setVisible(true);
-            this.setVisible(false);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(this, e);
-        }
+        String id = id_deskripsi.getText();
+        String detail = deskripsi.getText();
+        Deskripsi desc = new Deskripsi();
+        desc.setIdDeskripsi(Integer.parseInt(id));
+        desc.setDetailDeskripsi(detail);
+        control.addDeskripsi(desc);
+        control.editPengeluaran(desc);
+        control.openHalamanPengeluaran();
+        this.setVisible(false);
     }//GEN-LAST:event_checklistbuttonActionPerformed
 
     /**
@@ -149,8 +160,10 @@ public class FormDeskripsi extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checklistbutton;
     private javax.swing.JTextArea deskripsi;
+    private javax.swing.JTextField id_deskripsi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

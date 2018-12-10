@@ -24,4 +24,9 @@ public class HalamanUtamaControl {
         HalamanPengeluaran hlm = new HalamanPengeluaran();
         hlm.setVisible(true);
     }
+    
+    public static void openHalamanUtama(){
+        HalamanUtama hlm = new HalamanUtama();
+        hlm.setVisible(true);
+    }
 }
