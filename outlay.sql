@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 12:21 PM
+-- Generation Time: Dec 10, 2018 at 05:31 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -30,8 +30,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `deskripsi` (
   `id_deskripsi` int(11) NOT NULL,
-  `detail_deskripsi` int(11) NOT NULL
+  `detail_deskripsi` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `deskripsi`
+--
+
+INSERT INTO `deskripsi` (`id_deskripsi`, `detail_deskripsi`) VALUES
+(1, 'ini detail 1'),
+(2, 'ini detail 2'),
+(500, '');
 
 -- --------------------------------------------------------
 
@@ -113,9 +122,21 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `warna_kategori`, `icon_
 CREATE TABLE `pengeluaran` (
   `id_pengeluaran` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
-  `id_deskripsi` int(11) NOT NULL,
-  `nominal_pengeluaran` int(11) NOT NULL
+  `id_deskripsi` int(11) DEFAULT NULL,
+  `nominal_pengeluaran` int(11) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengeluaran`
+--
+
+INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_kategori`, `id_deskripsi`, `nominal_pengeluaran`, `date`) VALUES
+(1, 3, 1, 1400, '2018-12-10'),
+(2, 2, 2, 1200, '2018-12-10'),
+(3, 2, 500, 12500, '2018-12-04'),
+(4, 3, 500, 1000, '2018-12-09'),
+(5, 2, 500, 1290, '2018-11-13');
 
 --
 -- Indexes for dumped tables
@@ -155,18 +176,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `pengeluaran`
---
-ALTER TABLE `pengeluaran`
-  ADD CONSTRAINT `deskripsi_pk` FOREIGN KEY (`id_deskripsi`) REFERENCES `deskripsi` (`id_deskripsi`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `kategori_pk` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

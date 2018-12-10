@@ -8,16 +8,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Week"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="WeekMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Month">
           <Properties>
             <Property name="text" type="java.lang.String" value="Month"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MonthMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="List">
           <Properties>
             <Property name="text" type="java.lang.String" value="List"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ListMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

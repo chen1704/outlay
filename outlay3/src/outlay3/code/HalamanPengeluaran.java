@@ -41,6 +41,54 @@ public class HalamanPengeluaran extends javax.swing.JFrame {
             System.err.println(e);
         }   
     }
+    
+    private void show_tableweek(){
+        Connection conn;
+        try {
+            conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            //stmt = conn.createStatement();
+            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and YEARWEEK(pengeluaran.date) = YEARWEEK(SYSDATE()) and kategori.id_kategori = pengeluaran.id_kategori";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            pengeluaran_today.setModel(DbUtils.resultSetToTableModel(rs));
+            
+           
+        } catch(SQLException e){
+            System.err.println(e);
+        }   
+    }
+    
+    private void show_tablemonth(){
+        Connection conn;
+        try {
+            conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            //stmt = conn.createStatement();
+            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and EXTRACT(MONTH from pengeluaran.date) = EXTRACT(MONTH from SYSDATE()) and kategori.id_kategori = pengeluaran.id_kategori";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            pengeluaran_today.setModel(DbUtils.resultSetToTableModel(rs));
+            
+           
+        } catch(SQLException e){
+            System.err.println(e);
+        }   
+    }
+    
+    private void show_tableall(){
+        Connection conn;
+        try {
+            conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            //stmt = conn.createStatement();
+            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and kategori.id_kategori = pengeluaran.id_kategori";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            pengeluaran_today.setModel(DbUtils.resultSetToTableModel(rs));
+            
+           
+        } catch(SQLException e){
+            System.err.println(e);
+        }   
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,12 +225,27 @@ public class HalamanPengeluaran extends javax.swing.JFrame {
         jScrollPane1.setViewportView(pengeluaran_today);
 
         Week.setText("Week");
+        Week.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                WeekMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(Week);
 
         Month.setText("Month");
+        Month.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MonthMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(Month);
 
         List.setText("List");
+        List.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(List);
 
         setJMenuBar(jMenuBar1);
@@ -219,6 +282,21 @@ public class HalamanPengeluaran extends javax.swing.JFrame {
         control.openFormDeskripsi(id_pengeluaran);
         this.setVisible(false);
     }//GEN-LAST:event_pengeluaran_todayMouseClicked
+
+    private void MonthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MonthMouseClicked
+        // TODO add your handling code here:
+        show_tablemonth();
+    }//GEN-LAST:event_MonthMouseClicked
+
+    private void WeekMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WeekMouseClicked
+        // TODO add your handling code here:
+        show_tableweek();
+    }//GEN-LAST:event_WeekMouseClicked
+
+    private void ListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListMouseClicked
+        // TODO add your handling code here:
+        show_tableall();
+    }//GEN-LAST:event_ListMouseClicked
 
     /**
      * @param args the command line arguments
