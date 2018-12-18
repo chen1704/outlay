@@ -31,7 +31,7 @@ public class HalamanPengeluaran extends javax.swing.JFrame {
         try {
             conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
             //stmt = conn.createStatement();
-            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and pengeluaran.date = CURDATE() and kategori.id_kategori = pengeluaran.id_kategori";
+            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and pengeluaran.date = CURDATE() and kategori.id_kategori = pengeluaran.id_kategori order by id_pengeluaran asc";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             pengeluaran_today.setModel(DbUtils.resultSetToTableModel(rs));
@@ -47,7 +47,7 @@ public class HalamanPengeluaran extends javax.swing.JFrame {
         try {
             conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
             //stmt = conn.createStatement();
-            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and YEARWEEK(pengeluaran.date) = YEARWEEK(SYSDATE()) and kategori.id_kategori = pengeluaran.id_kategori";
+            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and YEARWEEK(pengeluaran.date) = YEARWEEK(SYSDATE()) and kategori.id_kategori = pengeluaran.id_kategori order by id_pengeluaran asc";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             pengeluaran_today.setModel(DbUtils.resultSetToTableModel(rs));
@@ -63,7 +63,7 @@ public class HalamanPengeluaran extends javax.swing.JFrame {
         try {
             conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
             //stmt = conn.createStatement();
-            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and EXTRACT(MONTH from pengeluaran.date) = EXTRACT(MONTH from SYSDATE()) and kategori.id_kategori = pengeluaran.id_kategori";
+            String sql = "select pengeluaran.id_pengeluaran, pengeluaran.nominal_pengeluaran, kategori.nama_kategori, deskripsi.detail_deskripsi, pengeluaran.date from pengeluaran, deskripsi, kategori where pengeluaran.id_deskripsi = deskripsi.id_deskripsi and EXTRACT(MONTH from pengeluaran.date) = EXTRACT(MONTH from SYSDATE()) and kategori.id_kategori = pengeluaran.id_kategori order by id_pengeluaran asc";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             pengeluaran_today.setModel(DbUtils.resultSetToTableModel(rs));
