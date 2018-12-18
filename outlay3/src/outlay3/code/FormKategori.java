@@ -138,6 +138,11 @@ public class FormKategori extends javax.swing.JFrame {
         });
 
         jMenuItem1.setText("Delete");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         TitikTiga.add(jMenuItem1);
 
         jMenuBar1.add(TitikTiga);
@@ -292,6 +297,10 @@ public class FormKategori extends javax.swing.JFrame {
             
         }*/
     }//GEN-LAST:event_ChecklistActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,8 +12,29 @@ import javax.swing.*;
  */
 public class FormDeskripsi extends javax.swing.JFrame { 
     PengeluaranControl control = new PengeluaranControl();
+    private static final String USERNAME="root";
+    private static final String PASSWORD="";
+    private static final String CONN_STRING="jdbc:mysql://localhost:3306/outlay";
     public void setIdDeskripsi(String id){
         id_deskripsi.setText(id);
+        
+        Connection con;
+        Statement st;
+        try{
+            con = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            //stmt = conn.createStatement();
+            String sql = "select detail_deskripsi from deskripsi where id_deskripsi = '"+id+"'";
+            System.out.println(id);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                deskripsi.setText(rs.getString(1));
+                System.out.println(rs.getString(1));
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
     /**
      * Creates new form FormDeskripsi
@@ -23,8 +44,6 @@ public class FormDeskripsi extends javax.swing.JFrame {
         id_deskripsi.setEditable(false);
     }
     
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

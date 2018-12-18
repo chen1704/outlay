@@ -15,6 +15,11 @@ public class PengeluaranControl {
     private static final String PASSWORD="";
     private static final String CONN_STRING="jdbc:mysql://localhost:3306/outlay";
     
+    public static void openHalamanUtama(){
+        HalamanUtama hlm = new HalamanUtama();
+        hlm.setVisible(true);
+    }
+    
     public static void openHalamanPengeluaran(){
         HalamanPengeluaran hlm = new HalamanPengeluaran();
         hlm.setVisible(true);
@@ -46,8 +51,17 @@ public class PengeluaranControl {
         try{
             con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
             st = con.createStatement();
-            String query = "insert into deskripsi(id_deskripsi, detail_deskripsi) values('"+desc.getIdDeskripsi()+"','"+desc.getDetailDeskripsi()+"')";
-            st.executeUpdate(query);
+            String sql = "select detail_deskripsi from deskripsi where id_deskripsi = '"+desc.getIdDeskripsi()+"'";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                String query = "update deskripsi set detail_deskripsi = '"+desc.getDetailDeskripsi()+"' where id_deskripsi = '"+desc.getIdDeskripsi()+"'";
+                st.executeUpdate(query); 
+            }
+            else{
+                String query = "insert into deskripsi(id_deskripsi, detail_deskripsi) values('"+desc.getIdDeskripsi()+"','"+desc.getDetailDeskripsi()+"')";
+                st.executeUpdate(query); 
+            }
         }
         catch(Exception e){
             System.err.println(e);
@@ -60,7 +74,7 @@ public class PengeluaranControl {
         try{
             con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
             st = con.createStatement();
-            String query = "update pengeluaran set id_deskripsi = '"+desc.getIdDeskripsi()+"' where id_kategori = '"+desc.getIdDeskripsi()+"'";
+            String query = "update pengeluaran set id_deskripsi = '"+desc.getIdDeskripsi()+"' where id_pengeluaran = '"+desc.getIdDeskripsi()+"'";
             st.executeUpdate(query);
             System.out.println("Hai");
         }
