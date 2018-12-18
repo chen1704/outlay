@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 05:31 PM
+-- Generation Time: Dec 18, 2018 at 04:37 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -38,8 +38,19 @@ CREATE TABLE `deskripsi` (
 --
 
 INSERT INTO `deskripsi` (`id_deskripsi`, `detail_deskripsi`) VALUES
-(1, 'ini detail 1'),
+(1, '1 loh hebat kan'),
 (2, 'ini detail 2'),
+(3, 'ini detail deskripsi pengeluaran3'),
+(4, 'ONG SEONGWOO'),
+(5, 'ini 5'),
+(6, 'ONORE'),
+(7, 'INI 7 YAK'),
+(8, 'ini 8 :)'),
+(9, 'ZASSHU'),
+(10, 'D3T41L10'),
+(12, 'hai patrick'),
+(13, 'hai spongebob'),
+(15, 'D35KR1P5!'),
 (500, '');
 
 -- --------------------------------------------------------
@@ -111,7 +122,9 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `warna_kategori`, `icon_kategori`) VALUES
 (1, 'Kategori1', 'hitam', 'kendaraan'),
 (2, 'Kategori-dua', 'hitam', 'kendaraan'),
-(3, 'Kategori3', 'kuning', 'baju');
+(3, 'ini_K4TeG0R!3', 'kuning', 'telepon'),
+(4, 'Kategoriempat', 'merah', 'telepon'),
+(6, 'K4T350R16', 'hitam', 'trashbin');
 
 -- --------------------------------------------------------
 
@@ -135,8 +148,16 @@ INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_kategori`, `id_deskripsi`, `nom
 (1, 3, 1, 1400, '2018-12-10'),
 (2, 2, 2, 1200, '2018-12-10'),
 (3, 2, 500, 12500, '2018-12-04'),
-(4, 3, 500, 1000, '2018-12-09'),
-(5, 2, 500, 1290, '2018-11-13');
+(4, 3, 4, 1000, '2018-12-09'),
+(5, 2, 5, 1290, '2018-11-13'),
+(6, 3, 6, 1200, '2018-12-18'),
+(7, 4, 7, 120, '2018-12-18'),
+(8, 5, 8, 3000, '2018-12-18'),
+(9, 4, 9, 1206, '2018-12-18'),
+(10, 6, 10, 120, '2018-12-18'),
+(12, 3, 12, 1245, '2018-12-18'),
+(13, 6, 13, 1400, '2018-12-18'),
+(15, 3, 15, 13690, '2018-12-18');
 
 --
 -- Indexes for dumped tables
@@ -170,13 +191,13 @@ ALTER TABLE `pengeluaran`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kategori` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
