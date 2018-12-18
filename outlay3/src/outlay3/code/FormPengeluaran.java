@@ -367,8 +367,8 @@ public class FormPengeluaran extends javax.swing.JFrame {
         pengeluaran.setIdKategori(Integer.parseInt(id_kategori));
         pengeluaran.setNominalPengeluaran(Integer.parseInt(harga_field.getText()));
         control.addPengeluaran(pengeluaran);
-       
-        control.openHalamanPengeluaran();
+        String id = control.getId();
+        control.openDialogueBox(id);
         this.setVisible(false);
     }//GEN-LAST:event_tabel_kategoriMouseClicked
 

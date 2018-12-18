@@ -17,6 +17,7 @@ public class HalamanUtama extends javax.swing.JFrame {
      */
     public HalamanUtama() {
         initComponents();
+        kategori_button.setVisible(false);
     }
 
     /**
@@ -29,9 +30,9 @@ public class HalamanUtama extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        sidebar_button = new javax.swing.JButton();
+        kategori_button = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        SideBar = new javax.swing.JMenu();
-        Kategori = new javax.swing.JMenu();
         Diagram = new javax.swing.JMenu();
         Angka = new javax.swing.JMenu();
 
@@ -39,17 +40,19 @@ public class HalamanUtama extends javax.swing.JFrame {
 
         jLabel1.setText("HalamanUtama");
 
-        SideBar.setText("SideBar");
-
-        Kategori.setText("Kategori");
-        Kategori.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KategoriMouseClicked(evt);
+        sidebar_button.setText("SideBar");
+        sidebar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sidebar_buttonActionPerformed(evt);
             }
         });
-        SideBar.add(Kategori);
 
-        jMenuBar1.add(SideBar);
+        kategori_button.setText("Kategori");
+        kategori_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kategori_buttonActionPerformed(evt);
+            }
+        });
 
         Diagram.setText("Diagram");
         Diagram.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,16 +77,25 @@ public class HalamanUtama extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+                .addGap(161, 161, 161)
                 .addComponent(jLabel1)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sidebar_button)
+                    .addComponent(kategori_button))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(35, 35, 35)
+                .addComponent(sidebar_button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(kategori_button)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,10 +113,21 @@ public class HalamanUtama extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_AngkaMouseClicked
 
-    private void KategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KategoriMouseClicked
+    private void kategori_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategori_buttonActionPerformed
+        // TODO add your handling code here:
         control.openHalamanKategori();
         this.setVisible(false);
-    }//GEN-LAST:event_KategoriMouseClicked
+    }//GEN-LAST:event_kategori_buttonActionPerformed
+
+    private void sidebar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidebar_buttonActionPerformed
+        // TODO add your handling code here:
+        if(kategori_button.isVisible() == false){
+            kategori_button.setVisible(true);
+        }
+        else{
+            kategori_button.setVisible(false);
+        }
+    }//GEN-LAST:event_sidebar_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +167,9 @@ public class HalamanUtama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Angka;
     private javax.swing.JMenu Diagram;
-    private javax.swing.JMenu Kategori;
-    private javax.swing.JMenu SideBar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton kategori_button;
+    private javax.swing.JButton sidebar_button;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package outlay3.code;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author core i5
@@ -295,30 +297,36 @@ public class FormEditKategori extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        color_hitam.setActionCommand("hitam");
-        color_putih.setActionCommand("putih");
-        color_red.setActionCommand("merah");
-        color_yellow.setActionCommand("kuning");
-        color_blue.setActionCommand("biru");
         
-        kendaraan.setActionCommand("kendaraan");
-        keranjang.setActionCommand("keranjang");
-        telepon.setActionCommand("telepon");
-        pin.setActionCommand("pin");
-        baju.setActionCommand("baju");
-        trashbin.setActionCommand("trashbin");
-        
-        Integer id = Integer.parseInt(id_field.getText());
-        String nama = nama_ktgr.getText();
-        String color = buttonGroup1.getSelection().getActionCommand();
-        String ikon = buttonGroup2.getSelection().getActionCommand();
-        
-        Kategori kat = new Kategori();
-        kat.setId(id);
-        kat.SetKategori(nama, color, ikon);
-        control.editKategori(kat);
-        control.openHalamanKategori();
-        this.setVisible(false);
+        if(buttonGroup1.getSelection() == null || buttonGroup2.getSelection() == null){
+            
+            JOptionPane.showMessageDialog(null, "Isi warna dan juga ikon di Button!");
+        }
+        else{
+            color_hitam.setActionCommand("hitam");
+            color_putih.setActionCommand("putih");
+            color_red.setActionCommand("merah");
+            color_yellow.setActionCommand("kuning");
+            color_blue.setActionCommand("biru");
+
+            kendaraan.setActionCommand("kendaraan");
+            keranjang.setActionCommand("keranjang");
+            telepon.setActionCommand("telepon");
+            pin.setActionCommand("pin");
+            baju.setActionCommand("baju");
+            trashbin.setActionCommand("trashbin");
+            String color = buttonGroup1.getSelection().getActionCommand();
+            String ikon = buttonGroup2.getSelection().getActionCommand();
+            Integer id = Integer.parseInt(id_field.getText());
+            String nama = nama_ktgr.getText();
+
+            Kategori kat = new Kategori();
+            kat.setId(id);
+            kat.SetKategori(nama, color, ikon);
+            control.editKategori(kat);
+            control.openHalamanKategori();
+            this.setVisible(false);
+        } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed

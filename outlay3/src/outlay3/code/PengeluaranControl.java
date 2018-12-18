@@ -31,6 +31,11 @@ public class PengeluaranControl {
         form.setVisible(true);
     }
     
+    public static void openDialogueBox(String pengeluaran){
+        DialogueBox db = new DialogueBox();
+        db.setId(pengeluaran);
+        db.setVisible(true);
+    }
     public static void addPengeluaran(Pengeluaran peng){
         Connection con;
         Statement st;
@@ -79,6 +84,47 @@ public class PengeluaranControl {
             System.out.println("Hai");
         }
         catch(Exception e){
+            System.err.println(e);
+        }
+    }
+    
+    public static String getId(){
+       Connection con;
+       Statement st;
+       String id;
+       try{
+            con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
+            st = con.createStatement();
+            String query = "select id_pengeluaran from pengeluaran order by id_pengeluaran desc";
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+               id = rs.getString(1); 
+            }
+            else{
+                id = null;
+            }
+            
+            System.out.println(id);
+            return id;
+       }
+       catch(Exception e){
+           System.err.println(e);
+           String h = null;
+           return h;
+       }
+   }
+    
+    public static void deletePengeluaran(String id){
+        Connection con;
+        Statement st;
+        try{
+            con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
+            st = con.createStatement();
+            String query = "delete from pengeluaran where id_pengeluaran = '"+id+"'";
+            st.executeUpdate(query);
+        }
+        catch (Exception e){
             System.err.println(e);
         }
     }
